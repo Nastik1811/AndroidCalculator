@@ -7,8 +7,14 @@
 
     <EditText
         android:id="@+id/mainPane"
+        style="@android:style/Widget.Material.Light.EditText"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:ems="10"
-        android:inputType="number" />
+        android:layout_margin="20dp"
+        android:hint="@string/zero"
+        android:inputType="number"
+        android:padding="10dp"
+        android:text="@string/zero"
+        android:textAlignment="viewEnd"
+        android:textSize="30sp"/>
 </FrameLayout>

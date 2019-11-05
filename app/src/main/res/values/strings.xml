@@ -13,7 +13,6 @@
     <string name="two">2</string>
     <string name="one">1</string>
     <string name="three">3</string>
-    <string name="zero">0</string>
     <string name="dec_point">.</string>
     <string name="eq_sign">=</string>
     <string name="delete">del</string>
@@ -21,4 +20,20 @@
     <string name="product">*</string>
     <string name="minus">-</string>
     <string name="plus">+</string>
+    <string name="l_bracket">(</string>
+    <string name="r_bracket">)</string>
+    <string name="log">log</string>
+    <string name="exp">exp</string>
+    <string name="sin">sin</string>
+    <string name="cos">cos</string>
+    <string name="ln">ln</string>
+    <string name="sqrt">sqrt</string>
+    <string name="tan">tan</string>
+    <string name="ctg">ctg</string>
+    <string name="pi">pi</string>
+    <string name="factorial">x!</string>
+    <string name="deg">x^y</string>
+    <string name="square">x^2</string>
+    <string name="e">e</string>
+    <string name="zero">0</string>
 </resources>

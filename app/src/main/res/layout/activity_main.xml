@@ -1,18 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <fragment
+        android:id="@+id/resultPane"
+        android:name="com.example.calculator.DataPaneFragment"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        tools:layout="@layout/fragment_data_pane"/>
+    <LinearLayout
+        android:layout_weight="3"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:baselineAligned="false">
+
+        <fragment
+            android:id="@+id/scientificPane"
+            android:name="com.example.calculator.ScientificOptionsFragment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:visibility="gone"
+            tools:ignore="NestedWeights"
+            tools:layout="@layout/fragment_scientific_options" />
+        <fragment
+            android:id="@+id/basicPane"
+            android:name="com.example.calculator.BasicOperstionsFragment"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            tools:layout="@layout/fragment_basic_operations"/>
+
+    </LinearLayout>
+</LinearLayout>
