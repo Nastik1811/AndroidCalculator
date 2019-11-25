@@ -5,16 +5,16 @@
     style="@style/BasicGrid"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:columnCount="4"
+    app:columnCount="3"
     app:rowCount="5">
-    <Button
-        android:id="@+id/rad_deg"
-        style="@style/ButtonStyle"
-        android:text="@string/rad"/>
     <Button
         android:id="@+id/log"
         style="@style/ButtonStyle"
         android:text="@string/log" />
+    <Button
+        android:id="@+id/ln"
+        style="@style/ButtonStyle"
+        android:text="@string/ln" />
 
     <Button
         android:id="@+id/exp"
@@ -26,15 +26,6 @@
         style="@style/ButtonStyle"
         android:text="@string/sin" />
 
-    <Button
-        android:id="@+id/ln"
-        style="@style/ButtonStyle"
-        android:text="@string/ln" />
-
-    <Button
-        android:id="@+id/reminder"
-        style="@style/ButtonStyle"
-        android:text="@string/reminder" />
 
     <Button
         android:id="@+id/cos"
@@ -42,14 +33,14 @@
         android:text="@string/cos" />
 
     <Button
-        android:id="@+id/tan"
-        style="@style/ButtonStyle"
-        android:text="@string/tan" />
-
-    <Button
         android:id="@+id/sqrt"
         style="@style/ButtonStyle"
         android:text="@string/sqrt" />
+
+    <Button
+        android:id="@+id/tan"
+        style="@style/ButtonStyle"
+        android:text="@string/tan" />
 
     <Button
         android:id="@+id/ctg"
@@ -67,11 +58,6 @@
         android:text="@string/factorial" />
 
     <Button
-        android:id="@+id/e_sign"
-        style="@style/ButtonStyle"
-        android:text="@string/e" />
-
-    <Button
         android:id="@+id/x_sq"
         style="@style/ButtonStyle"
         android:text="@string/x_2" />
@@ -80,10 +66,5 @@
         android:id="@+id/x_deg"
         style="@style/ButtonStyle"
         android:text="@string/x_y" />
-
-    <Button
-        android:id="@+id/module"
-        style="@style/ButtonStyle"
-        android:text="@string/module" />
 
 </androidx.gridlayout.widget.GridLayout>

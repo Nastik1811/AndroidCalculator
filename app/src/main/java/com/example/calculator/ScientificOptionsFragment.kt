@@ -25,13 +25,10 @@ class ScientificOptionsFragment : Fragment(), View.OnClickListener {
         (view.findViewById(R.id.sin) as Button).setOnClickListener(this)
         (view.findViewById(R.id.ctg) as Button).setOnClickListener(this)
         (view.findViewById(R.id.tan) as Button).setOnClickListener(this)
-        (view.findViewById(R.id.module) as Button).setOnClickListener(this)
         (view.findViewById(R.id.exp) as Button).setOnClickListener(this)
-        (view.findViewById(R.id.e_sign) as Button).setOnClickListener(this)
         (view.findViewById(R.id.pi_sign) as Button).setOnClickListener(this)
         (view.findViewById(R.id.ln) as Button).setOnClickListener(this)
         (view.findViewById(R.id.log) as Button).setOnClickListener(this)
-        (view.findViewById(R.id.reminder) as Button).setOnClickListener(this)
         (view.findViewById(R.id.sqrt) as Button).setOnClickListener(this)
         (view.findViewById(R.id.x_deg) as Button).setOnClickListener(this)
         (view.findViewById(R.id.x_sq) as Button).setOnClickListener(this)
@@ -60,6 +57,13 @@ class ScientificOptionsFragment : Fragment(), View.OnClickListener {
 
     interface OnScientificFragmentInteractionListener {
         fun onScientificFragmentInteraction(view: View)
+    }
+
+    companion object {
+
+        fun newInstance(): ScientificOptionsFragment {
+            return ScientificOptionsFragment()
+        }
     }
 
 }

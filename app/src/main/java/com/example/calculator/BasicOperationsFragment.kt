@@ -31,6 +31,7 @@ class BasicOperationsFragment : Fragment(), View.OnClickListener {
         (view.findViewById(R.id.decimal_point) as Button).setOnClickListener(this)
         (view.findViewById(R.id.r_bracket) as Button).setOnClickListener(this)
         (view.findViewById(R.id.l_bracket) as Button).setOnClickListener(this)
+        (view.findViewById(R.id.reminder) as Button).setOnClickListener(this)
         (view.findViewById(R.id.digit_0) as Button).setOnClickListener(this)
         (view.findViewById(R.id.digit_1) as Button).setOnClickListener(this)
         (view.findViewById(R.id.digit_2) as Button).setOnClickListener(this)
@@ -66,5 +67,10 @@ class BasicOperationsFragment : Fragment(), View.OnClickListener {
     interface OnBasicFragmentInteractionListener {
         fun onBasicFragmentInteraction(view: View)
     }
+    companion object {
 
+        fun newInstance(): BasicOperationsFragment {
+            return BasicOperationsFragment()
+        }
+    }
 }
