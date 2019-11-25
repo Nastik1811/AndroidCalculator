@@ -1,8 +1,4 @@
 <resources>
-    <string name="app_name">Calculator</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="eq">=</string>
     <string name="seven">7</string>
     <string name="four">4</string>
@@ -13,27 +9,39 @@
     <string name="two">2</string>
     <string name="one">1</string>
     <string name="three">3</string>
+
     <string name="dec_point">.</string>
-    <string name="eq_sign">=</string>
     <string name="delete">del</string>
-    <string name="devide">/</string>
-    <string name="product">*</string>
     <string name="minus">-</string>
     <string name="plus">+</string>
     <string name="l_bracket">(</string>
     <string name="r_bracket">)</string>
-    <string name="log">log</string>
-    <string name="exp">exp</string>
+    <string name="zero">0</string>
+
+    <string name="rad">RAD</string>
+    <string name="deg">DEG</string>
+    <string name="reminder">%</string>
+    <string name="division">÷</string>
+    <string name="multiplication">×</string>
+
+    <string name="factorial">x!</string>
+    <string name="sqrt">√</string>
     <string name="sin">sin</string>
+
     <string name="cos">cos</string>
     <string name="ln">ln</string>
-    <string name="sqrt">sqrt</string>
-    <string name="tan">tan</string>
+    <string name="log">log</string>
     <string name="ctg">ctg</string>
-    <string name="pi">pi</string>
-    <string name="factorial">x!</string>
-    <string name="deg">x^y</string>
-    <string name="square">x^2</string>
     <string name="e">e</string>
-    <string name="zero">0</string>
+    <string name="exp">eˣ</string>
+    <string name="x_y">xʸ</string>
+    <string name="x_2">x²</string>
+    <string name="tan">tg</string>
+    <string name="pi">π</string>
+    <string name="module">∣x∣</string>
+    <string name="change_mode">pro</string>
+    <string name="error">Wrong expression!</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

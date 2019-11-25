@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/main_pane_layout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/change_mode_button"
+            style="@style/ButtonStyle.Toggle"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:visibility="gone"
+            android:text="@string/change_mode" />
+
+        <TextView
+            style="@style/ResultView"
+            android:id="@+id/result_view"
+            android:hint="@string/zero"
+            android:text="@string/zero"
+            android:textAlignment="gravity" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/delimiter"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/main_pane_layout"
+        android:background="@color/colorAccent" />
+
+    <LinearLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/main_pane_layout"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+        <fragment
+            android:id="@+id/scientific_fragment"
+            android:name="com.example.calculator.ScientificOptionsFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_scientific_options"
+            android:layout_weight="4" />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary" />
+        <fragment
+            android:id="@+id/basic_fragment"
+            tools:layout="@layout/fragment_basic_options"
+            android:name="com.example.calculator.BasicOperationsFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="3" />
+
+    </LinearLayout>
+
+</RelativeLayout>

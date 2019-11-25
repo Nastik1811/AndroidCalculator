@@ -1,76 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.gridlayout.widget.GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/pad_numeric"
+    style="@style/BasicGrid"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ScientificOptionsFragment">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
+    app:columnCount="4"
+    app:rowCount="5">
     <Button
-        android:id="@+id/l_bracket"
+        android:id="@+id/rad_deg"
         style="@style/ButtonStyle"
-        android:text="@string/l_bracket" />
-
-    <Button
-        android:id="@+id/r_bracket"
-        style="@style/ButtonStyle"
-        android:text="@string/r_bracket" />
+        android:text="@string/rad"/>
     <Button
         android:id="@+id/log"
         style="@style/ButtonStyle"
         android:text="@string/log" />
+
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/exp"
         style="@style/ButtonStyle"
         android:text="@string/exp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-    <Button
-        android:id="@+id/reversed"
-        style="@style/ButtonStyle"
-        android:text="1/x" />
 
     <Button
         android:id="@+id/sin"
         style="@style/ButtonStyle"
         android:text="@string/sin" />
-    <Button
-        android:id="@+id/cos"
-        style="@style/ButtonStyle"
-        android:text="@string/cos" />
+
     <Button
         android:id="@+id/ln"
         style="@style/ButtonStyle"
         android:text="@string/ln" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
 
     <Button
-        android:id="@+id/sqrt"
+        android:id="@+id/reminder"
         style="@style/ButtonStyle"
-        android:text="@string/sqrt" />
+        android:text="@string/reminder" />
+
+    <Button
+        android:id="@+id/cos"
+        style="@style/ButtonStyle"
+        android:text="@string/cos" />
 
     <Button
         android:id="@+id/tan"
         style="@style/ButtonStyle"
         android:text="@string/tan" />
+
+    <Button
+        android:id="@+id/sqrt"
+        style="@style/ButtonStyle"
+        android:text="@string/sqrt" />
 
     <Button
         android:id="@+id/ctg"
@@ -81,12 +60,6 @@
         android:id="@+id/pi_sign"
         style="@style/ButtonStyle"
         android:text="@string/pi" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
 
     <Button
         android:id="@+id/factorial"
@@ -94,20 +67,23 @@
         android:text="@string/factorial" />
 
     <Button
-        android:id="@+id/x_deg"
+        android:id="@+id/e_sign"
         style="@style/ButtonStyle"
-        android:text="@string/deg" />
+        android:text="@string/e" />
 
     <Button
         android:id="@+id/x_sq"
         style="@style/ButtonStyle"
-        android:text="@string/square" />
-
+        android:text="@string/x_2" />
 
     <Button
-        android:id="@+id/e_sign"
+        android:id="@+id/x_deg"
         style="@style/ButtonStyle"
-        android:text="@string/e" />
-    </LinearLayout>
+        android:text="@string/x_y" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/module"
+        style="@style/ButtonStyle"
+        android:text="@string/module" />
+
+</androidx.gridlayout.widget.GridLayout>
