@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:columnCount="3"
-    app:rowCount="5">
+    app:rowCount="4">
     <Button
         android:id="@+id/log"
         style="@style/ButtonStyle"
@@ -53,9 +53,9 @@
         android:text="@string/pi" />
 
     <Button
-        android:id="@+id/factorial"
+        android:id="@+id/backward"
         style="@style/ButtonStyle"
-        android:text="@string/factorial" />
+        android:text="@string/backword" />
 
     <Button
         android:id="@+id/x_sq"
@@ -63,8 +63,8 @@
         android:text="@string/x_2" />
 
     <Button
-        android:id="@+id/x_deg"
+        android:id="@+id/module"
         style="@style/ButtonStyle"
-        android:text="@string/x_y" />
+        android:text="@string/module" />
 
 </androidx.gridlayout.widget.GridLayout>

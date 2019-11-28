@@ -40,9 +40,6 @@
     <string name="pi">π</string>
     <string name="module">∣x∣</string>
     <string name="change_mode">pro</string>
-    <string name="error">Wrong expression!</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="clear">CA</string>
+    <string name="clear">C</string>
+    <string name="backword">1/x</string>
 </resources>

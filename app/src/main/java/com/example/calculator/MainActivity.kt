@@ -1,37 +1,41 @@
 package com.example.calculator
 
-import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import kotlin.math.*
+import androidx.lifecycle.ViewModelProviders
 
 class MainActivity : AppCompatActivity(),
     BasicOperationsFragment.OnBasicFragmentInteractionListener,
     ScientificOptionsFragment.OnScientificFragmentInteractionListener {
 
     lateinit var resultView: TextView
-    private enum class CalculatorMode {BASIC, SCIENTIFIC, BOTH}
-    private enum class CalculatorState {INPUT, RESULT, EVALUATION}
-    private enum class EvaluationMode {NONE, SUM, MULTIPLICATION, DIVISION, SUBSTRACTION}
+    lateinit var viewModel: CalculatorViewModel
+
+    private enum class CalculatorMode {BASIC, SCIENTIFIC}
+    private enum class CalculatorState {NEW, CONTINUE}
 
     private var currentMode: CalculatorMode? = CalculatorMode.BASIC
-    private var currentState: CalculatorState = CalculatorState.INPUT
-    private var evaluationMode: EvaluationMode = EvaluationMode.NONE
+    private var currentState: CalculatorState? = CalculatorState.NEW
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN;
         actionBar?.hide()
+
         resultView = findViewById(R.id.result_view)
+        viewModel = ViewModelProviders.of(this).get(CalculatorViewModel::class.java)
 
-        if(savedInstanceState != null) {
-            resultView.text = savedInstanceState.getString("Result")}
-
+        if (savedInstanceState != null)
+        {
+            currentMode = savedInstanceState.getSerializable("Mode") as CalculatorMode?
+            currentState = savedInstanceState.getSerializable("State") as CalculatorState?
+            resultView.text = savedInstanceState.getString("Result")
+        }
         if((resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT)
             && (BuildConfig.FLAVOR == "full"))
         {
@@ -41,22 +45,16 @@ class MainActivity : AppCompatActivity(),
             {
                 val basicFragment = BasicOperationsFragment()
                 supportFragmentManager.beginTransaction().add(R.id.fragment_container, basicFragment).commit()
-
             }
         }
-
-
     }
+
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.run {
-            putString("Result", resultView.text.toString())
-        }
-        // call superclass to save any view hierarchy
+        outState.putSerializable("Mode", currentMode)
+        outState.putSerializable("State", currentState)
+        outState.putString("Result", resultView.text.toString())
         super.onSaveInstanceState(outState)
     }
-    private var result: Double = 0.0
-    private var temp: Double = 0.0
-
     override fun onBasicFragmentInteraction(view: View)
     {
         if(resultView.text == "") resultView.text="0"
@@ -71,91 +69,79 @@ class MainActivity : AppCompatActivity(),
             R.id.digit_7 -> onInputDigit('7')
             R.id.digit_8 -> onInputDigit('8')
             R.id.digit_9 -> onInputDigit('9')
-            R.id.clear -> resultView.text = ""
             R.id.decimal_point -> {
-                resultView.text = resultView.text.toString().plus(".")
+                if (resultView.text.split('.').size == 1) {
+                    resultView.text = resultView.text.toString().plus(".")
+                }
             }
             R.id.reminder -> {
-                result = resultView.text.toString().toDouble() / 100
-                resultView.text = result.toString()
+                evaluate()
+                viewModel.applyFunction("reminder")
+                updateResult()
             }
             R.id.eq_sign -> {
-                evaluate()
-                temp = 0.0
-                currentState = CalculatorState.RESULT
+                if(currentState != CalculatorState.NEW) evaluate()
+                viewModel.reset()
             }
             R.id.plus -> {
-                evaluate()
-                evaluationMode = EvaluationMode.SUM
-                temp = resultView.text.toString().toDouble()
-                currentState = CalculatorState.RESULT
+                if(currentState != CalculatorState.NEW) evaluate()
+                viewModel.changeMode("SUM")
+                viewModel.temp = resultView.text.toString().toDouble()
             }
             R.id.minus -> {
-                evaluate()
-                evaluationMode = EvaluationMode.SUBSTRACTION
-                temp = resultView.text.toString().toDouble()
-                currentState = CalculatorState.RESULT
+                if(currentState != CalculatorState.NEW) evaluate()
+                viewModel.changeMode("SUBTRACTION")
+                viewModel.temp = resultView.text.toString().toDouble()
             }
             R.id.product -> {
-                evaluate()
-                evaluationMode = EvaluationMode.MULTIPLICATION
-                temp = resultView.text.toString().toDouble()
-                currentState = CalculatorState.RESULT
+                if(currentState != CalculatorState.NEW) evaluate()
+                viewModel.changeMode("MULTIPLICATION")
+                viewModel.temp = resultView.text.toString().toDouble()
             }
-            R.id.devision -> {
-                evaluate()
-                evaluationMode = EvaluationMode.DIVISION
-                temp = resultView.text.toString().toDouble()
-                currentState = CalculatorState.RESULT
+            R.id.division -> {
+                if(currentState != CalculatorState.NEW) evaluate()
+                viewModel.changeMode("DIVISION")
+                viewModel.temp = resultView.text.toString().toDouble()
             }
+            R.id.clear -> resultView.text = resultView.text.toString().dropLast(1)
         }
     }
 
     private fun onInputDigit(digit:Char){
         if(resultView.text == "0") resultView.text=""
-        if(currentState == CalculatorState.RESULT)
+        if(currentState == CalculatorState.NEW)
         {
             resultView.text=""
-            currentState = CalculatorState.INPUT
+            currentState = CalculatorState.CONTINUE
         }
         resultView.text = resultView.text.toString().plus(digit)
-
     }
 
     private fun evaluate(){
-        result = resultView.text.toString().toDouble()
-        when(evaluationMode){
-            EvaluationMode.SUM -> result += temp
-            EvaluationMode.MULTIPLICATION -> result *= temp
-            EvaluationMode.SUBSTRACTION -> result = temp - result
-            EvaluationMode.DIVISION -> result = temp/result
-        }
-        resultView.text = result.toString()
-        evaluationMode = EvaluationMode.NONE
+        viewModel.result = resultView.text.toString().toDouble()
+        viewModel.evaluate()
+        updateResult()
     }
 
-
-    @SuppressLint("SetTextI18n")
     override fun onScientificFragmentInteraction(view: View)
     {
         if(resultView.text == "") resultView.text="0"
-        result = resultView.text.toString().toDouble()
         evaluate()
         when(view.id) {
-            R.id.log -> result = log10(result)
-            R.id.ln ->  result = ln(result)
-            R.id.exp ->  result = exp(result)
-            R.id.sin ->  result = sin(result)
-            R.id.cos ->  result = cos(result)
-            R.id.tan ->  result = tan(result)
-            R.id.ctg ->  result = tan(result)
-            R.id.sqrt ->  result = sqrt(result)
-            R.id.factorial ->  result = (result)
-            R.id.x_sq -> result *= result
-            R.id.x_deg ->  result *= result
+            R.id.log -> viewModel.applyFunction("log10")
+            R.id.ln -> viewModel.applyFunction("ln")
+            R.id.exp -> viewModel.applyFunction("exp")
+            R.id.sin -> viewModel.applyFunction("sin")
+            R.id.cos -> viewModel.applyFunction("cos")
+            R.id.tan ->  viewModel.applyFunction("tan")
+            R.id.ctg -> viewModel.applyFunction("ctg")
+            R.id.sqrt -> viewModel.applyFunction("sqrt")
+            R.id.backward -> viewModel.applyFunction("backward")
+            R.id.x_sq -> viewModel.applyFunction("x_sq")
+            R.id.module -> viewModel.applyFunction("module")
+            R.id.pi_sign -> viewModel.applyFunction("pi")
         }
-        resultView.text= "%.8f".format(result)
-        currentState = CalculatorState.RESULT
+        updateResult()
     }
 
     private fun changeMode() {
@@ -170,6 +156,12 @@ class MainActivity : AppCompatActivity(),
             fragmentTransaction.replace(R.id.fragment_container, basicFragment).commit()
             currentMode = CalculatorMode.BASIC
         }
+    }
+
+    private fun updateResult()
+    {
+        resultView.text = viewModel.toString()
+        currentState = CalculatorState.NEW
     }
 
 

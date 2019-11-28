@@ -30,9 +30,9 @@ class ScientificOptionsFragment : Fragment(), View.OnClickListener {
         (view.findViewById(R.id.ln) as Button).setOnClickListener(this)
         (view.findViewById(R.id.log) as Button).setOnClickListener(this)
         (view.findViewById(R.id.sqrt) as Button).setOnClickListener(this)
-        (view.findViewById(R.id.x_deg) as Button).setOnClickListener(this)
+        (view.findViewById(R.id.module) as Button).setOnClickListener(this)
         (view.findViewById(R.id.x_sq) as Button).setOnClickListener(this)
-        (view.findViewById(R.id.factorial) as Button).setOnClickListener(this)
+        (view.findViewById(R.id.backward) as Button).setOnClickListener(this)
         return view
     }
 

@@ -30,9 +30,9 @@
     </style>
 
     <style name="ButtonStyle.Operator">
-        <item name="backgroundTint">?attr/colorAccent</item>
+        <item name="backgroundTint">@color/colorAccent</item>
         <item name="android:opacity">transparent</item>
-        <item name="rippleColor">?attr/colorPrimary</item>
+        <item name="rippleColor">@color/colorPrimary</item>
         <item name="android:textSize">27sp</item>
         <item name="android:maxWidth">30dp</item>
         <item name="android:layout_margin">5dp</item>

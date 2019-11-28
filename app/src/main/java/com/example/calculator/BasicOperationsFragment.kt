@@ -6,10 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
-
-
-
 
 class BasicOperationsFragment : Fragment(), View.OnClickListener {
     private var listener: OnBasicFragmentInteractionListener? = null
@@ -20,12 +18,10 @@ class BasicOperationsFragment : Fragment(), View.OnClickListener {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_basic_options, container, false)
 
-        // TODO: Find a better solution
         (view.findViewById(R.id.eq_sign) as Button).setOnClickListener(this)
         (view.findViewById(R.id.clear) as Button).setOnClickListener(this)
-        //(view.findViewById(R.id.del) as Button).setOnClickListener(this)
         (view.findViewById(R.id.product) as Button).setOnClickListener(this)
-        (view.findViewById(R.id.devision) as Button).setOnClickListener(this)
+        (view.findViewById(R.id.division) as Button).setOnClickListener(this)
         (view.findViewById(R.id.minus) as Button).setOnClickListener(this)
         (view.findViewById(R.id.plus) as Button).setOnClickListener(this)
         (view.findViewById(R.id.decimal_point) as Button).setOnClickListener(this)
@@ -42,6 +38,11 @@ class BasicOperationsFragment : Fragment(), View.OnClickListener {
         (view.findViewById(R.id.digit_7) as Button).setOnClickListener(this)
         (view.findViewById(R.id.digit_8) as Button).setOnClickListener(this)
         (view.findViewById(R.id.digit_9) as Button).setOnClickListener(this)
+        (view.findViewById(R.id.clear) as Button).setOnLongClickListener{
+            val resultView: TextView? = activity?.findViewById(R.id.result_view)
+            resultView?.text = ""
+            true
+        }
         return view
     }
 
